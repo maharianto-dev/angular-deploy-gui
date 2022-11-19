@@ -1,7 +1,10 @@
-# Tauri + Next.js + Typescript
+# Angular Deploy GUI
 
-This template should help get you started developing with Tauri, Next.js and Typescript.
+A Tauri app used to build and automatically deploy angular app/workspace created using angular cli and/or nx to local server directory
 
-## Recommended IDE Setup
+## Disclaimer
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+This is just a passion project and for personal use.
+I do not claim this is bug-free and perfect and nor do I have any intention to actively maintain this repository.
+
+Maharianto, 2022
