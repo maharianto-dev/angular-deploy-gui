@@ -59,14 +59,15 @@ function App() {
       "init_config"
     )) as CommandResultStruct<CheckConfigFileReturnStruct>;
     if (result.command_result) {
-      if (result?.command_data?.is_found) {
-        router.push("/config/create");
-      } else {
-        setConfigResultMessage(result?.command_data?.message);
-        (
-          document.getElementById("my-global-modal") as HTMLInputElement
-        ).checked = true;
-      }
+      // if (result?.command_data?.is_found) {
+      //   router.push("/config/create");
+      // } else {
+      //   setConfigResultMessage(result?.command_data?.message);
+      //   (
+      //     document.getElementById("my-global-modal") as HTMLInputElement
+      //   ).checked = true;
+      // }
+      router.push("/config/create");
     }
   }
 
