@@ -35,11 +35,26 @@ export default function CommandExecution(props) {
   const [isShowRunCommandResult, setIsShowRunCommandResult] = useState(false);
   const [isRunningAngularCommand, setIsRunningAngularCommand] = useState(false);
   const [successfulAppList, setSuccessfulAppList] = useState([]);
+  const [runningAngularCommandStartTime, setRunningAngularCommandStartTime] = useState(new Date());
+  const [runningAngularCommandEndTime, setRunningAngularCommandEndTime] = useState(new Date());
+  const [totalElapsedRunningAngularCommandTime, setTotalElapsedRunningAngularCommandTime] = useState(0);
 
   useEffect(() => {
     setUseNx(false);
     setSkipNxCache(false);
   }, [isNxDir]);
+
+  useEffect(() => {
+    if (isRunningAngularCommand === true) {
+      setRunningAngularCommandStartTime(new Date());
+    } else {
+      setRunningAngularCommandEndTime(new Date());
+    }
+  }, [isRunningAngularCommand])
+
+  useEffect(() => {
+    setTotalElapsedRunningAngularCommandTime(runningAngularCommandEndTime.getTime() - runningAngularCommandStartTime.getTime());
+  }, [runningAngularCommandEndTime])
 
   const handleAppSelectionChange = (event, value: string): void => {
     let data = [...selectedApp];
@@ -354,6 +369,9 @@ export default function CommandExecution(props) {
           selectedFePath={selectedFePath}
           selectedServerPath={selectedServerPath}
           successfulAppList={successfulAppList}
+          runningAngularCommandStartTime={runningAngularCommandStartTime}
+          runningAngularCommandEndTime={runningAngularCommandEndTime}
+          totalElapsedRunningAngularCommandTime={totalElapsedRunningAngularCommandTime}
         ></RunCommandActionAndResult>
       )}
     </>

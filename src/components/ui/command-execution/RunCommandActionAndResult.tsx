@@ -1,4 +1,7 @@
 import SuccessDeployToServerMessage from "./SuccessDeployToServerMessage";
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
+import { useEffect, useState } from "react";
 
 export default function RunCommandActionAndResult(props) {
   const {
@@ -10,7 +13,14 @@ export default function RunCommandActionAndResult(props) {
     selectedFePath,
     selectedServerPath,
     successfulAppList,
+    runningAngularCommandStartTime,
+    runningAngularCommandEndTime,
+    totalElapsedRunningAngularCommandTime,
   } = props;
+
+  useEffect(() => {
+    dayjs.extend(duration);
+  }, []);
 
   return (
     <>
@@ -68,6 +78,17 @@ export default function RunCommandActionAndResult(props) {
             {!isRunCommandOk && (
               <p>{`Error building and deploying angular app(s). Please check your log at ${'"<home dir>/angular-deploy-gui/log"'}`}</p>
             )}
+            <p>{`Start time ${dayjs(runningAngularCommandStartTime).format(
+              "DD-MM-YYYY HH:mm:ss.SSS"
+            )}`}</p>
+            <p>{`End time ${dayjs(runningAngularCommandEndTime).format(
+              "DD-MM-YYYY HH:mm:ss.SSS"
+            )}`}</p>
+            <p>{`Total elapsed time ${dayjs
+              .duration(totalElapsedRunningAngularCommandTime)
+              .format(
+                "mm [minute(s)] ss [second(s)] SSS [millisecond(s)]"
+              )}`}</p>
           </div>
         </div>
       )}
